@@ -10,8 +10,10 @@ public class RobotBasePart : MonoBehaviour
     SpriteRenderer sr;
     [SerializeField]
     private int health = 10;
+    public int recharge_unit = 1;
     public int drop_health = 1;
     Robot robot;
+
 
     public int Health
     {
@@ -53,7 +55,7 @@ public class RobotBasePart : MonoBehaviour
 
     public void Damage (int damage) { health -= damage; }
 
-    public void Recharge() { health += 1; }
+    public void Recharge() { health += recharge_unit; }
 
     public void Drop() {
         if (IsInRobotArea())
@@ -73,14 +75,14 @@ public class RobotBasePart : MonoBehaviour
     private void FallDown() {
         Debug.Log("Robot part is falling!");
         this.transform.parent = null;
-        rb.isKinematic = true;
+        rb.simulated = true;
         curr_state = State.DETTACHED;
     }
 
     public void AttachTo(Transform newParent)
     {
         Debug.Log("Attaching Robot part");
-        rb.isKinematic = false;
+        rb.simulated = false;
         this.transform.parent = newParent;
         curr_state = State.ATTACHED;
     }
@@ -99,6 +101,7 @@ public class RobotBasePart : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer.Equals("Robot")) {
+
         }
     }
 }

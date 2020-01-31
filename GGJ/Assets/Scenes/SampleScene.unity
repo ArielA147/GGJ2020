@@ -393,6 +393,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62454cad274498748a15be8c9746cbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  recharge_unit: 1
+  drop_health: 1
 --- !u!61 &1645188540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -783,6 +786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: robot_part
+      objectReference: {fileID: 0}
+    - target: {fileID: 227926886857253799, guid: c11e5bb2a31d989488924f60d36b7416,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interaction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c11e5bb2a31d989488924f60d36b7416, type: 3}

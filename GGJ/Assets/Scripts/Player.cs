@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private bool canPickUp = true;
     public float __velocity;
     public float jumpSpeed = 1f;
     private Rigidbody2D RB; // RB for the player
-    public robot myRobot; // the robot of the palyer
-    private bool is_lifting = false; // is the player can lift someting right now
-    private RobotBasePart curr_part; // the robot part that is curently hold by the player
+    private bool is_lifting = false;
+    public Robot myRobot; // the robot of the palyer
+    private RobotBasePart pickup; // the robot part that is curently hold by the player
+    private RobotBasePart potentialPart;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         RB = transform.GetComponent<Rigidbody2D>();
-        robot myRobot = GameObject.FindObjectOfType<robot>();
+        myRobot = GameObject.FindObjectOfType<Robot>();
     }
 
     // Update is called once per frame
@@ -26,10 +29,7 @@ public class Player : MonoBehaviour
         gameObject.name = "RobotBasePart";
         if (Input.GetKeyDown("m"))
         {
-            if (is_lifting)
-            {
-                curr_part.transform.SetParent(myRobot.transform);
-            }
+            ActionButton();
         }
     }
 
@@ -50,57 +50,56 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    // the player picking an object and hold him
-    private void PickingRobotPart(RobotBasePart part) {
-        part.AttachTo(this.transform);
-    }
-
-    private void DropingRobotPart(RobotBasePart part) {
-        part.Drop();
-        part.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
-        part.transform.SetParent(gameObject.transform); // todo : to check where the dropping occuried 
-        is_lifting = true;
-        curr_part = part;
-    }
-
-
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "RobotBasePart" && Input.GetKeyDown("m"))
-        {
-            // check if the user holding something
-            // if holding something : drop the object
-            // if no holding something : 
-            // check if the part is availble
-            // if true - pickup , change the state of the part for attacted 
-            // else do nothing
-
-            RobotBasePart part = collision.gameObject.GetComponent<RobotBasePart>();
-            Debug.Log(part.GetState() + ", " + is_lifting);
-            if (part.GetState() == RobotBasePart.State.ATTACHED)
-            { 
-                if (is_lifting)
-                {
-                    part.transform.SetParent(myRobot.transform);
-
-                }
-                else
-                {
-
-                }
-            }
-            else if (part.GetState() == RobotBasePart.State.DETTACHED )
-            {
-                part.ChangeState(RobotBasePart.State.ATTACHED);
-                part.transform.position = new Vector2(transform.position.x, transform.position.y +Mathf.Abs( GetComponent<Collider2D>().bounds.max.y));
-                part.transform.SetParent(gameObject.transform); // changing the parent of the part to this object
-                is_lifting = true;
-
-                curr_part = part;
-               
-            }        
+    private void ActionButton() {
+        if (pickup != null) {
+            DropRobotPart();
+        } else if (potentialPart != null) { 
+            PickupRobotPart();
         }
     }
- }
+
+    // the player picking an object and hold him
+    private void PickupRobotPart() {
+        // check if the part is avalible
+        if (CanPickUp()) { // the part is free to pickup
+            potentialPart.AttachTo(transform);
+            // moving the part to the player pos. 
+            // the y pos of the part will be bigger than the palyer pos ("over the shoulder").
+            potentialPart.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
+            potentialPart.transform.SetParent(gameObject.transform); // moving the part to be the sun of the palyer 
+            ChangePickpuMod();
+            // change the part to be a son of the palyer in th TREEGAME
+            potentialPart.transform.SetParent(gameObject.transform);
+        }
+    }
+
+
+    private bool CanPickUp() {
+        return 
+            this.potentialPart != null &&
+            this.potentialPart.GetState() == RobotBasePart.State.DETTACHED &&
+            this.pickup == null;
+    }
+
+    private void ChangePickpuMod() {
+        canPickUp = !canPickUp;
+    }
+
+    private void DropRobotPart() {
+        if (pickup == null) {
+            Debug.Log("trying to drop a part when non is available");
+            return;
+        }
+
+        pickup.Drop();
+        is_lifting = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Interaction")) {
+            this.potentialPart = collision.GetComponentInParent<RobotBasePart>();
+        }
+    }
+
+}
