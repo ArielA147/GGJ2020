@@ -6,8 +6,7 @@ public class RobotBasePart : MonoBehaviour
 {
     public enum State { DETTACHED, ATTACHED };
     private State curr_state;
-    private Rigidbody2D rb;
-    SpriteRenderer sr;
+    public Rigidbody2D rb;
     [SerializeField]
     private int health = 10;
     public int recharge_unit = 1;
@@ -35,8 +34,8 @@ public class RobotBasePart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Starting Robot Part");
         rb = transform.GetComponent<Rigidbody2D>();
-        sr = GetComponentInChildren<SpriteRenderer>();
         isAttacking = robotChunk != null;
     }
 
@@ -113,6 +112,7 @@ public class RobotBasePart : MonoBehaviour
             Debug.Log("Trying to start attack cycle when already attacking");
             return; 
         }
+        isAttacking = true;
         InvokeRepeating("Attack", 0f, GetAttackIntervalInSeconds());
     }
 
