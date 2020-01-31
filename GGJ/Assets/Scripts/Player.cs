@@ -12,8 +12,9 @@ public class Player : MonoBehaviour
     private RobotBasePart potentialPart;
     public int playerNum;
     public Animator anim;
-
-    private KeyCode player_left, player_right, player_lift, player_jump;
+    public GameObject floor;
+    private bool is_jumping = false;
+    private KeyCode player_left, player_right, player_lift, player_jump, player_rotate;
 
 
 
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Controller();
-        gameObject.name = "RobotBasePart";
         if (Input.GetKeyDown("m"))
         {
             ActionButton();
@@ -57,10 +57,16 @@ public class Player : MonoBehaviour
             RB.velocity = new Vector2(0, RB.velocity.y);
             anim.SetBool("is_running", false);
         }
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !is_jumping)
         {
-           // Debug.Log("jump");
+            // Debug.Log("jump");
+            is_jumping = true;
             RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
+        }
+        if (pickup != null && Input.GetKey(player_rotate))
+        {
+            pickup.transform.Rotate(new Vector3(0,0,2));
+            Debug.Log("rotating");
         }
     }
 
@@ -105,12 +111,14 @@ public class Player : MonoBehaviour
                 player_right = KeyCode.RightArrow;
                 player_lift = KeyCode.M;
                 player_jump = KeyCode.Space;
+                player_rotate = KeyCode.N;
                 break;
             case 2:
                 player_left = KeyCode.A;
                 player_right = KeyCode.D;
                 player_lift = KeyCode.W;
                 player_jump = KeyCode.F;
+                player_rotate = KeyCode.T;
                 break;
 
         }
@@ -136,6 +144,10 @@ public class Player : MonoBehaviour
             
             this.potentialPart = collision.GetComponentInParent<RobotBasePart>();
         }
+      
+
+            
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -146,5 +158,10 @@ public class Player : MonoBehaviour
         {
             this.potentialPart = null;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        is_jumping = false;
     }
 }

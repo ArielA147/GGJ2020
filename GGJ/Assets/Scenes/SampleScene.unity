@@ -225,8 +225,9 @@ MonoBehaviour:
   __velocity: 6
   jumpSpeed: 17
   myRobot: {fileID: 206364924}
-  playerNum: 0
-  anim: {fileID: 0}
+  playerNum: 1
+  anim: {fileID: 89908652}
+  floor: {fileID: 1713433949}
 --- !u!212 &89908648
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -743,6 +744,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c11e5bb2a31d989488924f60d36b7416, type: 3}
+--- !u!1 &1713433949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8633444706144675945, guid: 15ae13c44f819fd4db20e71d03c3d7f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 8633444704806557266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1794071043
 GameObject:
   m_ObjectHideFlags: 0
