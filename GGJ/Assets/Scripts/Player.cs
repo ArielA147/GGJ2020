@@ -9,10 +9,14 @@ public class Player : MonoBehaviour
     public robot myRobot;
     private bool is_lifting = false;
     private robot_part curr_part;
+    public int playerNum;
+
+    private KeyCode player_left, player_right, player_lift, player_jump;
     // Start is called before the first frame update
     void Start()
     {
         RB = transform.GetComponent<Rigidbody2D>();
+        SetPlayerKeys(playerNum);
         //robot myRobot = GameObject.FindObjectOfType<robot>();
 
 
@@ -21,6 +25,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+   
         Controller();
         gameObject.name = "robot_part";
         if (Input.GetKeyDown("m"))
@@ -35,9 +41,13 @@ public class Player : MonoBehaviour
 
     private void Controller()
     {
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetKey("left"))
         {
-            RB.velocity = new Vector2(Input.GetAxis("Horizontal")*__velocity, RB.velocity.y);
+            RB.velocity = new Vector2(-1f * __velocity, RB.velocity.y);
+        }
+        else if (Input.GetKey("right"))
+        {
+            RB.velocity = new Vector2(1f*__velocity, RB.velocity.y);
         }
         else
         {
@@ -46,7 +56,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             Debug.Log("jump");
-            RB.velocity = new Vector2( RB.velocity.x, 6f);
+            RB.velocity = new Vector2( RB.velocity.x, 20f);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -80,8 +90,29 @@ public class Player : MonoBehaviour
             }
             
         }
+
     }
-   
+
+    private void SetPlayerKeys(int player_num)
+    {
+        switch (player_num)
+        {
+            case 1:
+                player_left = KeyCode.LeftArrow;
+                player_right = KeyCode.RightArrow;
+                player_lift = KeyCode.M;
+                player_jump = KeyCode.Space;
+                break;
+            case 2:
+                player_left = KeyCode.A;
+                player_right = KeyCode.D;
+                player_lift = KeyCode.W;
+                player_jump = KeyCode.F;
+                break;
+
+        }
+       
+    }
 
 
 }
