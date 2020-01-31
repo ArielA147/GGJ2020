@@ -12,7 +12,8 @@ public class RobotBasePart : MonoBehaviour
     private int health = 10;
     public int recharge_unit = 1;
     public int drop_health = 1;
-    Robot robot;
+    RobotChunk robotChunk;
+    RobotChunk potentialRobotChunk;
 
 
     public int Health
@@ -60,16 +61,26 @@ public class RobotBasePart : MonoBehaviour
     public void Drop() {
         if (IsInRobotArea())
         {
-            AttachTo(robot.transform);
+            Debug.Log("in robot area");
+            AttachToRobot();
         }
         else {
             FallDown();
         }
     }
 
+    private void AttachToRobot() {
+        AttachTo(potentialRobotChunk.transform);
+        this.robotChunk = this.potentialRobotChunk;
+        this.potentialRobotChunk = null;
+        this.curr_state = State.ATTACHED;
+    }
+
+
     bool IsInRobotArea() {
-        //TODO
-        return false;
+        return 
+            this.potentialRobotChunk != null && 
+            this.robotChunk == null;
     }
 
     private void FallDown() {
@@ -100,8 +111,19 @@ public class RobotBasePart : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer.Equals("Robot")) {
+        if (collision.gameObject.tag.Equals("RobotChunk"))
+        {
+            this.potentialRobotChunk = collision.GetComponent<RobotChunk>();
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("RobotChunk") &&
+            potentialRobotChunk != null &&
+            GameObject.ReferenceEquals(collision.GetComponent<RobotChunk>().gameObject, potentialRobotChunk.gameObject))
+        {
+            this.potentialRobotChunk = null;
         }
     }
 }
