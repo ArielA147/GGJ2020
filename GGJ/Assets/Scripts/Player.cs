@@ -99,7 +99,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Interaction") && 
+        if (collision.gameObject.tag.Equals("Interaction") &&
+            potentialPart != null && 
             GameObject.ReferenceEquals(collision.GetComponentInParent<RobotBasePart>().gameObject, potentialPart.gameObject))
         {
             this.potentialPart = null;
