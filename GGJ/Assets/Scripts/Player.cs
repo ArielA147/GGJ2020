@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public Robot myRobot; // the robot of the palyer
     private RobotBasePart pickup; // the robot part that is curently hold by the player
     private RobotBasePart potentialPart;
-    private robot_part curr_part;
     public int playerNum;
     public Animator anim;
 
@@ -95,13 +94,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void DropRobotPart() {
-        if (pickup == null) {
-            Debug.Log("trying to drop a part when non is available");
-            return;
-        }
 
-    }
 
     private void SetPlayerKeys(int player_num)
     {
@@ -124,6 +117,14 @@ public class Player : MonoBehaviour
        
     }
 
+
+    private void DropRobotPart()
+    {
+        if (pickup == null)
+        {
+            Debug.Log("trying to drop a part when non is available");
+            return;
+        }
 
         pickup.Drop();
         pickup = null;
