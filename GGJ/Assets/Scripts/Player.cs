@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private bool is_lifting = false;
     private robot_part curr_part;
     public int playerNum;
+    public Animator anim;
 
     private KeyCode player_left, player_right, player_lift, player_jump;
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     {
         RB = transform.GetComponent<Rigidbody2D>();
         SetPlayerKeys(playerNum);
+        anim = GetComponent<Animator>();
         //robot myRobot = GameObject.FindObjectOfType<robot>();
 
 
@@ -44,14 +46,18 @@ public class Player : MonoBehaviour
         if (Input.GetKey("left"))
         {
             RB.velocity = new Vector2(-1f * __velocity, RB.velocity.y);
+           
+            anim.SetBool("is_running", true);
         }
         else if (Input.GetKey("right"))
         {
             RB.velocity = new Vector2(1f*__velocity, RB.velocity.y);
+            anim.SetBool("is_running", true);
         }
         else
         {
             RB.velocity = new Vector2(0, RB.velocity.y);
+            anim.SetBool("is_running", false);
         }
         if (Input.GetKeyDown("space"))
         {
