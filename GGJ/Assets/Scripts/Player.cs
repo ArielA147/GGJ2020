@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
             RB.velocity = new Vector2( RB.velocity.x, 6f);
         }
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.name == "robot_part" && Input.GetKeyDown("m"))
@@ -77,11 +78,7 @@ public class Player : MonoBehaviour
 
                 curr_part = part;
                
-            }
-            
+            }        
         }
     }
-   
-
-
-}
+ }
