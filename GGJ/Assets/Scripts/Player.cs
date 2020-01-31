@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public float __velocity;
     public float jumpSpeed = 1f;
     private Rigidbody2D RB; // RB for the player
-    private bool is_lifting = false;
     public Robot myRobot; // the robot of the palyer
     private RobotBasePart pickup; // the robot part that is curently hold by the player
     private RobotBasePart potentialPart;
@@ -87,14 +86,23 @@ public class Player : MonoBehaviour
         }
 
         pickup.Drop();
-        is_lifting = false;
+        pickup = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Interaction")) {
+            
             this.potentialPart = collision.GetComponentInParent<RobotBasePart>();
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Interaction") && 
+            GameObject.ReferenceEquals(collision.GetComponentInParent<RobotBasePart>().gameObject, potentialPart.gameObject))
+        {
+            this.potentialPart = null;
+        }
+    }
 }
