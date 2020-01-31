@@ -85,16 +85,15 @@ public class RobotBasePart : MonoBehaviour
     }
 
     private void FallDown() {
-        //Debug.Log("Robot part is falling!");
         this.transform.parent = null;
-        rb.simulated = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         curr_state = State.DETTACHED;
     }
 
     public void AttachTo(Transform newParent)
     {
         Debug.Log("Attaching Robot part");
-        rb.simulated = false;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         this.transform.parent = newParent;
         curr_state = State.ATTACHED;
     }
