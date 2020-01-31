@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
-            Debug.Log("jump");
+           // Debug.Log("jump");
             RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
         }
     }

@@ -77,6 +77,8 @@ MonoBehaviour:
   health: 10
   recharge_unit: 1
   drop_health: 1
+  robotChunk: {fileID: 0}
+  potentialRobotChunk: {fileID: 0}
 --- !u!50 &227926886620832462
 Rigidbody2D:
   serializedVersion: 4
@@ -108,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227926886857253798}
   - component: {fileID: 227926886857253797}
+  - component: {fileID: 3707512327724773265}
   m_Layer: 16
   m_Name: Interaction
   m_TagString: Interaction
@@ -155,6 +158,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2454944, y: 1.918044}
   m_EdgeRadius: 0
+--- !u!114 &3707512327724773265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227926886857253799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c5a3b3ba21f60428941f218dd2c078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &227926886938721294
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +284,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
