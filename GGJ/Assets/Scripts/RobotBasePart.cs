@@ -39,6 +39,8 @@ public class RobotBasePart : MonoBehaviour
     public bool IsPicked() {
         return curr_state == State.ATTACHED;
     }
+
+    // chainging  the status of the part (detach->attach) or (attach->detach)
     public void ChangeState(State state)
     {
         curr_state = state;
@@ -55,6 +57,8 @@ public class RobotBasePart : MonoBehaviour
         }
         else if (RB == null && state != State.ATTACHED) { gameObject.AddComponent<Rigidbody2D>(); }
     }
+    
+    // return if the part is avalible or detached
     public State GetState()
     {
         return curr_state;
