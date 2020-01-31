@@ -43,3 +43,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: sky
+    uniqueID: 1538366983
+    locked: 0
+  - name: sand
+    uniqueID: 1130718465
+    locked: 0
+  - name: car shadow
+    uniqueID: 2317838173
+    locked: 0
+  - name: mountain
+    uniqueID: 319221241
+    locked: 0
+  - name: car
+    uniqueID: 2008568779
+    locked: 0
