@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
         myRobot = GameObject.FindObjectOfType<Robot>();
         SetPlayerKeys(playerNum);
         anim = GetComponent<Animator>();
+        SetPlayerKeys(playerNum);
 
 
     }
@@ -32,22 +33,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Controller();
+        HandlePlayerMovement();
         if (Input.GetKeyDown("m"))
         {
             ActionButton();
         }
     }
 
-    private void Controller()
+    private void HandlePlayerMovement()
     {
-        if (Input.GetKey("left"))
+        if (Input.GetKey(player_left))
         {
             RB.velocity = new Vector2(-1f * __velocity, RB.velocity.y);
            
             anim.SetBool("is_running", true);
         }
-        else if (Input.GetKey("right"))
+        else if (Input.GetKey(player_right))
         {
             RB.velocity = new Vector2(1f*__velocity, RB.velocity.y);
             anim.SetBool("is_running", true);
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
             RB.velocity = new Vector2(0, RB.velocity.y);
             anim.SetBool("is_running", false);
         }
-        if (Input.GetKeyDown("space") && !is_jumping)
+        if (Input.GetKeyDown(player_jump) && !is_jumping)
         {
             // Debug.Log("jump");
             is_jumping = true;
