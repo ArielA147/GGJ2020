@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private bool canPickUp = true;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public float __velocity;
+    public float jumpSpeed = 1f;
     private Rigidbody2D RB; // RB for the player
     private bool is_lifting = false;
     public robot robot; // the robot of the palyer
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             Debug.Log("jump");
-            RB.velocity = new Vector2( RB.velocity.x, 6f);
+            RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
         }
     }
 
