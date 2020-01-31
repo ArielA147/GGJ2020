@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float __velocity;
+    public float jumpSpeed = 1f;
     private Rigidbody2D RB; // RB for the player
     public robot myRobot; // the robot of the palyer
     private bool is_lifting = false; // is the player can lift someting right now
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             Debug.Log("jump");
-            RB.velocity = new Vector2( RB.velocity.x, 6f);
+            RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
         }
     }
 
