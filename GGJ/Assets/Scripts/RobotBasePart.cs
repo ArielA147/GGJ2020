@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class robot_part : MonoBehaviour
+public class RobotBasePart : MonoBehaviour
 {
     public enum State { DETTACHED, ATTACHED};
     private State curr_state;
@@ -20,8 +20,7 @@ public class robot_part : MonoBehaviour
     void Start()
     {
         health = 4;
-
-        //RB = transform.GetComponent<Rigidbody2D>();
+        RB = transform.GetComponent<Rigidbody2D>();
         //GameObject.Destroy(RB);
     }
 
@@ -30,16 +29,29 @@ public class robot_part : MonoBehaviour
     {
         
     }
+
+    // switch between attached to dettached
+    public void ChangeState() {
+        curr_state = (curr_state == State.DETTACHED) ?  State.ATTACHED : State.DETTACHED;
+    }
+
+    // return true if the robot part got picked already
+    public bool IsPicked() {
+        return curr_state == State.ATTACHED;
+    }
     public void ChangeState(State state)
     {
         curr_state = state;
-        if (state == State.ATTACHED )
+        if (state == State.ATTACHED)
         {
             Debug.Log(" pickingup");
             if (RB != null)
             {
+                Debug.Log("there RB got value");
                 GameObject.Destroy(RB);
             }
+            Debug.Log("RB is null ");
+
         }
         else if (RB == null && state != State.ATTACHED) { gameObject.AddComponent<Rigidbody2D>(); }
     }
@@ -53,7 +65,7 @@ public class robot_part : MonoBehaviour
         health -= 1;
         if (health < 0) {
             PrintInDeadZone();
-            // todo : to call the function which drop the robot_part
+            // todo : to call the function which drop the robot_part on the floor.
         }
     }
     public void Recharge() {
@@ -67,7 +79,7 @@ public class robot_part : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // cheack if the object which was colliosion with is also an robot part/
-        if (collision.gameObject.name == "robot_part")
+        if (collision.gameObject.name == "RobotBasePart")
         {
             this.Damage();
             Debug.Log("now this item got " + this.health + " number of life");
