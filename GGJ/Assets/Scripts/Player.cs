@@ -5,21 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float __velocity;
-    private Rigidbody2D RB;
-    public robot myRobot;
-    private bool is_lifting = false;
+    public float jumpSpeed = 1f;
+    private Rigidbody2D RB; // RB for the player
+    public Robot myRobot; // the robot of the palyer
+    private RobotBasePart pickup; // the robot part that is curently hold by the player
+    private RobotBasePart potentialPart;
     private robot_part curr_part;
     public int playerNum;
     public Animator anim;
 
     private KeyCode player_left, player_right, player_lift, player_jump;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         RB = transform.GetComponent<Rigidbody2D>();
+        myRobot = GameObject.FindObjectOfType<Robot>();
         SetPlayerKeys(playerNum);
         anim = GetComponent<Animator>();
-        //robot myRobot = GameObject.FindObjectOfType<robot>();
 
 
     }
@@ -27,17 +32,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-   
         Controller();
-        gameObject.name = "robot_part";
+        gameObject.name = "RobotBasePart";
         if (Input.GetKeyDown("m"))
         {
-            if (is_lifting)
-            {
-                curr_part.transform.SetParent(myRobot.transform);
-
-            }
+            ActionButton();
         }
     }
 
@@ -61,40 +60,45 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
-            Debug.Log("jump");
-            RB.velocity = new Vector2( RB.velocity.x, 20f);
+           // Debug.Log("jump");
+            RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "robot_part" && Input.GetKeyDown("m"))
-        {
-            robot_part part = collision.gameObject.GetComponent<robot_part>();
-            Debug.Log(part.GetState() + ", " + is_lifting);
-            if (part.GetState() == robot_part.State.ATTACHED)
-            { 
-                
-                if (is_lifting)
-                {
-                    part.transform.SetParent(myRobot.transform);
-                    
-                }
-                else
-                {
 
-                }
-            }
-            else if (part.GetState() == robot_part.State.DETTACHED )
-            {
-                part.ChangeState(robot_part.State.ATTACHED);
-                part.transform.position = new Vector2(transform.position.x, transform.position.y +Mathf.Abs( GetComponent<Collider2D>().bounds.max.y));
-                part.transform.SetParent(gameObject.transform);
-                is_lifting = true;
+    private void ActionButton() {
+        if (pickup != null) {
+            DropRobotPart();
+        } else if (potentialPart != null) { 
+            PickupRobotPart();
+        }
+    }
 
-                curr_part = part;
-               
-            }
-            
+    // the player picking an object and hold him
+    private void PickupRobotPart() {
+        // check if the part is avalible
+        if (CanPickUp()) { // the part is free to pickup
+            potentialPart.AttachTo(transform);
+            this.pickup = potentialPart;
+            // moving the part to the player pos. 
+            // the y pos of the part will be bigger than the palyer pos ("over the shoulder").
+            pickup.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
+            pickup.transform.SetParent(gameObject.transform); // moving the part to be the sun of the palyer 
+        }
+    }
+
+
+    private bool CanPickUp() {
+        return 
+            this.potentialPart != null &&
+            this.potentialPart.GetState() == RobotBasePart.State.DETTACHED &&
+            this.pickup == null;
+    }
+
+
+    private void DropRobotPart() {
+        if (pickup == null) {
+            Debug.Log("trying to drop a part when non is available");
+            return;
         }
 
     }
@@ -121,4 +125,25 @@ public class Player : MonoBehaviour
     }
 
 
+        pickup.Drop();
+        pickup = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Interaction")) {
+            
+            this.potentialPart = collision.GetComponentInParent<RobotBasePart>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Interaction") &&
+            potentialPart != null && 
+            GameObject.ReferenceEquals(collision.GetComponentInParent<RobotBasePart>().gameObject, potentialPart.gameObject))
+        {
+            this.potentialPart = null;
+        }
+    }
 }

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interaction
+  - RobotChunk
   layers:
   - Default
   - TransparentFX
@@ -18,12 +20,12 @@ TagManager:
   - TargetPlayerA
   - TargetPlayerB
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Platform
+  - Falling
+  - Interaction
+  - Ground
+  - RobotChunk
   - 
   - 
   - 
