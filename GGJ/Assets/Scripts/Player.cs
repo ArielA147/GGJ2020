@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private bool canPickUp = true;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public float __velocity;
     private Rigidbody2D RB; // RB for the player
-    public robot myRobot; // the robot of the palyer
-    private bool is_lifting = false; // is the player can lift someting right now
-    private RobotBasePart curr_part; // the robot part that is curently hold by the player
+    private bool is_lifting = false;
+    public robot robot; // the robot of the palyer
+    private RobotBasePart pickup; // the robot part that is curently hold by the player
 
 
     // Start is called before the first frame update
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
         {
             if (is_lifting)
             {
-                curr_part.transform.SetParent(myRobot.transform);
+                pickup.transform.SetParent(robot.transform);
             }
         }
     }
@@ -51,16 +53,39 @@ public class Player : MonoBehaviour
 
 
     // the player picking an object and hold him
-    private void PickingRobotPart(RobotBasePart part) { 
+    private void PickingRobotPart(RobotBasePart part) {
+        // check if the part is avalible
+        if (part.GetState().ToString().Equals("DETTACHED")) { // the part is free to pickup
+            if (canPickUp) // check if player can pickup a part
+            {
+                part.ChangeState(); // change the part status - to detach
+                // moving the part to the player pos. 
+                // the y pos of the part will be bigger than the palyer pos ("over the shoulder").
+                part.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
+                part.transform.SetParent(gameObject.transform); // moving the part to be the sun of the palyer 
+                ChangePickpuMod();
+                // change the part to be a son of the palyer in th TREEGAME
+                part.transform.SetParent(gameObject.transform);
+            }
+            else DropingRobotPart(part);
+        }
 
+        
+    }
+
+    private void ChangePickpuMod() {
+        canPickUp = !canPickUp;
     }
 
     private void DropingRobotPart(RobotBasePart part) {
         part.ChangeState();
-        part.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
-        part.transform.SetParent(gameObject.transform); // todo : to check where the dropping occuried 
-        is_lifting = true;
-        curr_part = part;
+
+        // check where the robotpart is ? - on the robot or other place.
+        // if on robot -> the rp going as a son of the robot in this position.
+        // else -> the rp is falling down, 
+
+         is_lifting = true;
+        pickup = part;
     }
 
 
@@ -82,7 +107,7 @@ public class Player : MonoBehaviour
             { 
                 if (is_lifting)
                 {
-                    part.transform.SetParent(myRobot.transform);
+                    part.transform.SetParent(robot.transform);
 
                 }
                 else
@@ -97,7 +122,7 @@ public class Player : MonoBehaviour
                 part.transform.SetParent(gameObject.transform); // changing the parent of the part to this object
                 is_lifting = true;
 
-                curr_part = part;
+                pickup = part;
                
             }        
         }
