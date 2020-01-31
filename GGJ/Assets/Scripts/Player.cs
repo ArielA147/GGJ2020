@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private bool canPickUp = true;
     public float __velocity;
     public float jumpSpeed = 1f;
     private Rigidbody2D RB; // RB for the player
     public Robot myRobot; // the robot of the palyer
     private RobotBasePart pickup; // the robot part that is curently hold by the player
     private RobotBasePart potentialPart;
+    public int playerNum;
+    public Animator anim;
+    public GameObject floor;
+    private bool is_jumping = false;
+    private KeyCode player_left, player_right, player_lift, player_jump, player_rotate;
 
 
 
@@ -19,13 +23,16 @@ public class Player : MonoBehaviour
     {
         RB = transform.GetComponent<Rigidbody2D>();
         myRobot = GameObject.FindObjectOfType<Robot>();
+        SetPlayerKeys(playerNum);
+        anim = GetComponent<Animator>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Controller();
-        gameObject.name = "RobotBasePart";
         if (Input.GetKeyDown("m"))
         {
             ActionButton();
@@ -34,18 +41,32 @@ public class Player : MonoBehaviour
 
     private void Controller()
     {
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetKey("left"))
         {
-            RB.velocity = new Vector2(Input.GetAxis("Horizontal")*__velocity, RB.velocity.y);
+            RB.velocity = new Vector2(-1f * __velocity, RB.velocity.y);
+           
+            anim.SetBool("is_running", true);
+        }
+        else if (Input.GetKey("right"))
+        {
+            RB.velocity = new Vector2(1f*__velocity, RB.velocity.y);
+            anim.SetBool("is_running", true);
         }
         else
         {
             RB.velocity = new Vector2(0, RB.velocity.y);
+            anim.SetBool("is_running", false);
         }
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !is_jumping)
         {
-           // Debug.Log("jump");
+            // Debug.Log("jump");
+            is_jumping = true;
             RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
+        }
+        if (pickup != null && Input.GetKey(player_rotate))
+        {
+            pickup.transform.Rotate(new Vector3(0,0,2));
+            Debug.Log("rotating");
         }
     }
 
@@ -79,8 +100,36 @@ public class Player : MonoBehaviour
     }
 
 
-    private void DropRobotPart() {
-        if (pickup == null) {
+
+
+    private void SetPlayerKeys(int player_num)
+    {
+        switch (player_num)
+        {
+            case 1:
+                player_left = KeyCode.LeftArrow;
+                player_right = KeyCode.RightArrow;
+                player_lift = KeyCode.M;
+                player_jump = KeyCode.Space;
+                player_rotate = KeyCode.N;
+                break;
+            case 2:
+                player_left = KeyCode.A;
+                player_right = KeyCode.D;
+                player_lift = KeyCode.W;
+                player_jump = KeyCode.F;
+                player_rotate = KeyCode.T;
+                break;
+
+        }
+       
+    }
+
+
+    private void DropRobotPart()
+    {
+        if (pickup == null)
+        {
             Debug.Log("trying to drop a part when non is available");
             return;
         }
@@ -95,6 +144,10 @@ public class Player : MonoBehaviour
             
             this.potentialPart = collision.GetComponentInParent<RobotBasePart>();
         }
+      
+
+            
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -105,5 +158,10 @@ public class Player : MonoBehaviour
         {
             this.potentialPart = null;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        is_jumping = false;
     }
 }
