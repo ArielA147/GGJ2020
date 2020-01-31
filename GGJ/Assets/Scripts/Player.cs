@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     }
 
     private void DropingRobotPart(RobotBasePart part) {
-        part.ChangeState();
+        part.Drop();
         part.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
         part.transform.SetParent(gameObject.transform); // todo : to check where the dropping occuried 
         is_lifting = true;
