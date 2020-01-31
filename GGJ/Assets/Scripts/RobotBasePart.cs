@@ -14,6 +14,7 @@ public class RobotBasePart : MonoBehaviour
     public RobotChunk robotChunk;
     public RobotChunk potentialRobotChunk;
     private bool isAttacking = false;
+    protected Animator anim;
 
 
     public int Health
@@ -32,10 +33,11 @@ public class RobotBasePart : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         Debug.Log("Starting Robot Part");
         rb = transform.GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
         isAttacking = robotChunk != null;
     }
 
