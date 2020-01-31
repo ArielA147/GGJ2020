@@ -34,7 +34,9 @@ public class RobotPartInteraction : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("RobotChunk") &&
             this.robotPart.potentialRobotChunk != null &&
-            GameObject.ReferenceEquals(collision.GetComponent<RobotChunk>().gameObject, this.robotPart.potentialRobotChunk.gameObject))
+            GameObject.ReferenceEquals(
+                collision.GetComponent<RobotChunk>().gameObject, 
+                this.robotPart.potentialRobotChunk.gameObject))
         {
             this.robotPart.potentialRobotChunk = null;
         }
