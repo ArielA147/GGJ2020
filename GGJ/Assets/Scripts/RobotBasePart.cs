@@ -11,6 +11,7 @@ public class RobotBasePart : MonoBehaviour
     [SerializeField]
     private int health = 10;
     public int drop_health = 1;
+    Robot robot;
 
     public int Health
     {
@@ -55,13 +56,28 @@ public class RobotBasePart : MonoBehaviour
     public void Recharge() { health += 1; }
 
     public void Drop() {
+        if (IsInRobotArea())
+        {
+            AttachTo(robot.transform);
+        }
+        else {
+            FallDown();
+        }
+    }
+
+    bool IsInRobotArea() {
+        //TODO
+        return false;
+    }
+
+    private void FallDown() {
         Debug.Log("Robot part is falling!");
         this.transform.parent = null;
         rb.isKinematic = true;
         curr_state = State.DETTACHED;
     }
 
-    public void StickTo(Transform newParent)
+    public void AttachTo(Transform newParent)
     {
         Debug.Log("Attaching Robot part");
         rb.isKinematic = false;
@@ -77,6 +93,12 @@ public class RobotBasePart : MonoBehaviour
         {
             this.Damage(1);
             Debug.Log("Now this item has " + this.health + " life");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer.Equals("Robot")) {
         }
     }
 }

@@ -52,8 +52,8 @@ public class Player : MonoBehaviour
 
 
     // the player picking an object and hold him
-    private void PickingRobotPart(RobotBasePart part) { 
-
+    private void PickingRobotPart(RobotBasePart part) {
+        part.AttachTo(this.transform);
     }
 
     private void DropingRobotPart(RobotBasePart part) {
