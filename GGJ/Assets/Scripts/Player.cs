@@ -63,13 +63,11 @@ public class Player : MonoBehaviour
         // check if the part is avalible
         if (CanPickUp()) { // the part is free to pickup
             potentialPart.AttachTo(transform);
+            this.pickup = potentialPart;
             // moving the part to the player pos. 
             // the y pos of the part will be bigger than the palyer pos ("over the shoulder").
-            potentialPart.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
-            potentialPart.transform.SetParent(gameObject.transform); // moving the part to be the sun of the palyer 
-            ChangePickpuMod();
-            // change the part to be a son of the palyer in th TREEGAME
-            potentialPart.transform.SetParent(gameObject.transform);
+            pickup.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
+            pickup.transform.SetParent(gameObject.transform); // moving the part to be the sun of the palyer 
         }
     }
 
@@ -81,9 +79,6 @@ public class Player : MonoBehaviour
             this.pickup == null;
     }
 
-    private void ChangePickpuMod() {
-        canPickUp = !canPickUp;
-    }
 
     private void DropRobotPart() {
         if (pickup == null) {
