@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 89908647}
   - component: {fileID: 89908651}
   - component: {fileID: 89908650}
+  - component: {fileID: 89908652}
   m_Layer: 13
   m_Name: Player
   m_TagString: Untagged
@@ -221,9 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c481b5df2a230c94bbef127d3d12fd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  __velocity: 5
-  jumpSpeed: 8
+  __velocity: 6
+  jumpSpeed: 17
   myRobot: {fileID: 206364924}
+  playerNum: 0
+  anim: {fileID: 0}
 --- !u!212 &89908648
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -325,15 +328,34 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &89908652
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89908646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3f18643c64756d47b66c7bfd776b831, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &133779908
 PrefabInstance:
   m_ObjectHideFlags: 0
