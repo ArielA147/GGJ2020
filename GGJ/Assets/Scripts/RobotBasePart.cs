@@ -42,7 +42,7 @@ public class RobotBasePart : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (CanAttack() && !isAttacking) {
             StartAttacking();
