@@ -18,9 +18,9 @@ public class WashingMachine : RobotBasePart
 
     new void Update() {
         base.Update();
-        Debug.DrawLine(
+        Debug.DrawRay(
             transform.position - transform.right * startRaycastDistance, 
-            transform.position - transform.right * attackDistance);
+            -transform.right, Color.cyan);
     }
 
     protected override bool HasAttack()
@@ -36,13 +36,9 @@ public class WashingMachine : RobotBasePart
     protected override void Attack()
     {
         RaycastHit2D hit = Physics2D.Raycast(
-            transform.position - transform.right * startRaycastDistance,
-            transform.position - transform.right * attackDistance);
+            transform.position - transform.right * startRaycastDistance, -transform.right);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider);
-            Debug.Log("point: " + hit.point.ToString());
-            Debug.Log("distance: " + hit.distance.ToString());
             kettle.gameObject.transform.position = hit.point;
         }
         anim.SetTrigger(ANIMATOR_ATTACK_TRIGGER);
