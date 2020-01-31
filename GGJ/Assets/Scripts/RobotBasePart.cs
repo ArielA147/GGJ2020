@@ -14,6 +14,7 @@ public class RobotBasePart : MonoBehaviour
     public int drop_health = 1;
     public RobotChunk robotChunk;
     public RobotChunk potentialRobotChunk;
+    private bool isAttacking = false;
 
 
     public int Health
@@ -36,12 +37,15 @@ public class RobotBasePart : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        isAttacking = robotChunk != null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (CanAttack() && !isAttacking) {
+            StartAttacking();
+        }
     }
 
     // switch between attached to dettached
@@ -85,6 +89,8 @@ public class RobotBasePart : MonoBehaviour
     }
 
     private void FallDown() {
+        CancelInvoke("Attack");
+        isAttacking = false;
         this.transform.parent = null;
         rb.bodyType = RigidbodyType2D.Dynamic;
         curr_state = State.DETTACHED;
@@ -98,15 +104,28 @@ public class RobotBasePart : MonoBehaviour
         curr_state = State.ATTACHED;
     }
 
+    private bool CanAttack() {
+        return robotChunk != null && HasAttack();
+    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // cheack if the object which was colliosion with is also an robot part/
-        if (collision.gameObject.name == "RobotBasePart")
-        {
-            this.Damage(1);
-            //Debug.Log("Now this item has " + this.health + " life");
+    private void StartAttacking() {
+        if (isAttacking) {
+            Debug.Log("Trying to start attack cycle when already attacking");
+            return; 
         }
+        InvokeRepeating("Attack", 0f, GetAttackIntervalInSeconds());
+    }
+
+    protected virtual bool HasAttack() {
+        return false;
+    }
+
+    protected virtual float GetAttackIntervalInSeconds() {
+        return -1f; //not relevant for base
+    }
+
+    protected virtual void Attack() {
+        //do nothing
     }
 
 
