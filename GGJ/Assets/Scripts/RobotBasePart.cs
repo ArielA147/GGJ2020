@@ -14,6 +14,7 @@ public class RobotBasePart : MonoBehaviour
     public RobotChunk robotChunk;
     public RobotChunk potentialRobotChunk;
     private bool isAttacking = false;
+    public int damage = 1;
     protected Animator anim;
 
 

@@ -12,7 +12,6 @@ public class WashingMachine : RobotBasePart
 
     new void Start() {
         base.Start();
-        //kettle = GetComponentInChildren<WashingMachineKettle>();
         ANIMATOR_ATTACK_TRIGGER = Animator.StringToHash("Attack");
     }
 
@@ -37,11 +36,19 @@ public class WashingMachine : RobotBasePart
     {
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position - transform.right * startRaycastDistance, -transform.right);
-        if (hit.collider != null)
+        if (hit.collider != null && hit.distance <= attackDistance)
         {
+            Debug.Log(hit.distance);
             kettle.gameObject.transform.position = hit.point;
+            if (hit.collider.GetComponent<RobotBasePart>() || hit.collider.GetComponentInParent<RobotBasePart>()) {
+                RobotBasePart target = hit.collider.GetComponent<RobotBasePart>() != null ?
+                    hit.collider.GetComponent<RobotBasePart>() : 
+                    hit.collider.GetComponentInParent<RobotBasePart>();
+                anim.SetTrigger(ANIMATOR_ATTACK_TRIGGER);
+                target.Damage(this.damage);
+            }
         }
-        anim.SetTrigger(ANIMATOR_ATTACK_TRIGGER);
+        
     }
 }
 
