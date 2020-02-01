@@ -18,10 +18,7 @@ public class Player : MonoBehaviour
     public Vector2 holdPosition = new Vector2(-0.5f, 2.3f);
     SpriteRenderer sr;
     public float maxRotationAngle = 30f;
-
-    //-----------------------------------------
     private int rotation;
-    //-----------------------------------------------
         public float rechargeInterval = 1f;
     private float timeSinceLastRechargeAction = 0f;
     [Range(1,2)]
