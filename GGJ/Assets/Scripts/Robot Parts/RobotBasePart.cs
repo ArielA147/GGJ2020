@@ -73,6 +73,16 @@ public class RobotBasePart : MonoBehaviour
         Health -= damage;
     }
 
+    public void Damage(int damage, float seconds) {
+        StartCoroutine(ScheduleDamage(damage, seconds));
+    }
+
+    public IEnumerator ScheduleDamage(int damage, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Damage(damage);
+    }
+
     public void Recharge() {
         anim.SetBool(ANIM_RECHARGING_BOOL, true);
         Health += recharge_unit;

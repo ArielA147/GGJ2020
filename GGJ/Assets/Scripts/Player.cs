@@ -18,9 +18,7 @@ public class Player : MonoBehaviour
     public Vector2 holdPosition = new Vector2(-0.5f, 2.3f);
     SpriteRenderer sr;
     public float maxRotationAngle = 30f;
-    private int rotation;
-        public float rechargeInterval = 1f;
-    private float timeSinceLastRechargeAction = 0f;
+    public float rechargeInterval = 1f;
     [Range(1,2)]
     public int player_num = 0;
 
@@ -50,9 +48,6 @@ public class Player : MonoBehaviour
         }
         if (pickup != null && pickup.CanRotate() && Input.GetKey(player_rotate))
         {
-            this.rotation = 90;
-            //this.rotation = myRobot.robotNumber * 90;
-            int rot_direction = pickup.transform.rotation.eulerAngles.z > maxRotationAngle ? 1 : -1;
             pickup.transform.Rotate(new Vector3(0, 0, 2));
         }
         if (Input.GetKey(player_fix) && CanFix())
