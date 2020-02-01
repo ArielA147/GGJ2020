@@ -166,7 +166,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 146.67
+  m_SurfaceArc: 150
   m_UseSideFriction: 1
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -244,10 +244,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 600
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 6200000, guid: 5683f39cdc970c2468e19a0c865bc3eb, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7479022547920739391}
   - component: {fileID: 7479022547920739389}
   - component: {fileID: 7479022547920739388}
-  - component: {fileID: 7479022547920739387}
+  - component: {fileID: 1084052147}
   m_Layer: 13
   m_Name: Player2
   m_TagString: Untagged
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   __velocity: 8
-  jumpSpeed: 21
-  playerNum: 1
+  jumpSpeed: 35
+  playerNum: 2
   anim: {fileID: 0}
   player_left: 0
   player_right: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   holdPosition: {x: -0.5, y: 2.3}
   maxRotationAngle: 30
   rechargeInterval: 1
-  player_num: 1
+  player_num: 2
 --- !u!50 &7479022547920739388
 Rigidbody2D:
   serializedVersion: 4
@@ -72,16 +72,16 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 200
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &7479022547920739387
+--- !u!61 &1084052147
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
