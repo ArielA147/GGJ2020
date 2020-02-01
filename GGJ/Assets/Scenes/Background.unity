@@ -1045,7 +1045,7 @@ PrefabInstance:
     - target: {fileID: 7448631643991825004, guid: 26ac0548eca595c48b59fe08d348e473,
         type: 3}
       propertyPath: attackDistance
-      value: 30
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7448631643991825007, guid: 26ac0548eca595c48b59fe08d348e473,
         type: 3}
@@ -1615,6 +1615,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot2
       objectReference: {fileID: 0}
+    - target: {fileID: 3555723224328974613, guid: a7c4fc68351073c49ba31ce09b46aa33,
+        type: 3}
+      propertyPath: isBottomChumk
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3555723224328974611, guid: a7c4fc68351073c49ba31ce09b46aa33, type: 3}
     - {fileID: 6647499106412990051, guid: a7c4fc68351073c49ba31ce09b46aa33, type: 3}
@@ -1838,6 +1843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot1
       objectReference: {fileID: 0}
+    - target: {fileID: 3555723224328974613, guid: a7c4fc68351073c49ba31ce09b46aa33,
+        type: 3}
+      propertyPath: isBottomChumk
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3555723224328974611, guid: a7c4fc68351073c49ba31ce09b46aa33, type: 3}
     - {fileID: 6647499106726282769, guid: a7c4fc68351073c49ba31ce09b46aa33, type: 3}
@@ -1851,25 +1861,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4083231409497614714, guid: 26ac0548eca595c48b59fe08d348e473,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1224280949
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083231409497614714, guid: 26ac0548eca595c48b59fe08d348e473,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7448631643991825003, guid: 26ac0548eca595c48b59fe08d348e473,
         type: 3}
       propertyPath: m_Name
       value: WashingMachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7448631643991825004, guid: 26ac0548eca595c48b59fe08d348e473,
-        type: 3}
-      propertyPath: attackDistance
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7448631643991825007, guid: 26ac0548eca595c48b59fe08d348e473,
         type: 3}
@@ -1925,21 +1920,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7448631643991825007, guid: 26ac0548eca595c48b59fe08d348e473,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5866266
-      objectReference: {fileID: 0}
-    - target: {fileID: 7448631643991825007, guid: 26ac0548eca595c48b59fe08d348e473,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5866266
-      objectReference: {fileID: 0}
-    - target: {fileID: 7448631643991825007, guid: 26ac0548eca595c48b59fe08d348e473,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5866266
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ac0548eca595c48b59fe08d348e473, type: 3}
