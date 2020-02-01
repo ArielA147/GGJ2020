@@ -16,6 +16,7 @@ public class RobotBasePart : MonoBehaviour
     private bool isAttacking = false;
     public int damage = 1;
     protected Animator anim;
+    public int max_health = 10;
 
 
     public int Health
@@ -24,8 +25,11 @@ public class RobotBasePart : MonoBehaviour
         set {
             // Can't have less health than drop health
             health = Mathf.Max(value, drop_health);
+            health = Mathf.Min(value, max_health);
             if (health == drop_health) {
                 Drop();
+            } else if (health == max_health) {
+                DoneRepairing();
             }
         }
     }
@@ -36,7 +40,6 @@ public class RobotBasePart : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        Debug.Log("Starting Robot Part");
         rb = transform.GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         isAttacking = robotChunk != null;
@@ -67,12 +70,15 @@ public class RobotBasePart : MonoBehaviour
     public void Drop() {
         if (IsInRobotArea())
         {
-            Debug.Log("in robot area");
             AttachToRobot();
         }
         else {
             FallDown();
         }
+    }
+
+    private void DoneRepairing() {
+        Debug.Log("Done Repairing!");
     }
 
     private void AttachToRobot() {
@@ -84,9 +90,6 @@ public class RobotBasePart : MonoBehaviour
 
 
     bool IsInRobotArea() {
-
-        Debug.Log("potentialRobotChunk - ", this.potentialRobotChunk);
-        Debug.Log("robotChunk - ", this.robotChunk);
         return this.potentialRobotChunk != null &&  this.robotChunk == null;
     }
 
@@ -100,7 +103,6 @@ public class RobotBasePart : MonoBehaviour
 
     public void AttachTo(Transform newParent)
     {
-        Debug.Log("Attaching Robot part");
         rb.bodyType = RigidbodyType2D.Kinematic;
         this.transform.parent = newParent;
         curr_state = State.ATTACHED;

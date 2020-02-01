@@ -14,29 +14,45 @@ public class Player : MonoBehaviour
     public Animator anim;
     public GameObject floor;
     private bool is_jumping = false;
-    private KeyCode player_left, player_right, player_lift, player_jump, player_rotate;
-
-
+    private KeyCode player_left, player_right, player_lift, player_jump, player_rotate, player_fix;
+    private bool isRight;
+    public Vector2 holdPosition = new Vector2(-0.5f, 2.3f);
+    SpriteRenderer sr;
+    public float rechargeInterval = 1f;
+    private float timeSinceLastRechargeAction = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        isRight = playerNum == 1;
+        sr = GetComponent<SpriteRenderer>();
         RB = transform.GetComponent<Rigidbody2D>();
         myRobot = GameObject.FindObjectOfType<Robot>();
         SetPlayerKeys(playerNum);
         anim = GetComponent<Animator>();
         SetPlayerKeys(playerNum);
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         HandlePlayerMovement();
+        HandlePlayerActions();
+    }
+
+    private void HandlePlayerActions() {
         if (Input.GetKeyDown("m"))
         {
             ActionButton();
+        }
+        if (pickup != null && Input.GetKey(player_rotate))
+        {
+            pickup.transform.Rotate(new Vector3(0, 0, 2));
+        }
+        if (Input.GetKey(player_fix) && CanFix())
+        {
+            //TODO: this will recharge too fast :(
+            this.potentialPart.Recharge();
         }
     }
 
@@ -45,29 +61,26 @@ public class Player : MonoBehaviour
         if (Input.GetKey(player_left))
         {
             RB.velocity = new Vector2(-1f * __velocity, RB.velocity.y);
-           
-            anim.SetBool("is_running", true);
+            isRight = false;
+            //anim.SetBool("is_running", true);
         }
         else if (Input.GetKey(player_right))
         {
+            isRight = true;
             RB.velocity = new Vector2(1f*__velocity, RB.velocity.y);
-            anim.SetBool("is_running", true);
+            //anim.SetBool("is_running", true);
         }
         else
         {
             RB.velocity = new Vector2(0, RB.velocity.y);
-            anim.SetBool("is_running", false);
+            //anim.SetBool("is_running", false);
         }
+        sr.flipX = isRight;
+
         if (Input.GetKeyDown(player_jump) && !is_jumping)
         {
-            // Debug.Log("jump");
             is_jumping = true;
             RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
-        }
-        if (pickup != null && Input.GetKey(player_rotate))
-        {
-            pickup.transform.Rotate(new Vector3(0,0,2));
-            Debug.Log("rotating");
         }
     }
 
@@ -87,8 +100,7 @@ public class Player : MonoBehaviour
             this.pickup = potentialPart;
             // moving the part to the player pos. 
             // the y pos of the part will be bigger than the palyer pos ("over the shoulder").
-            pickup.transform.position = new Vector2(transform.position.x, transform.position.y + Mathf.Abs(GetComponent<Collider2D>().bounds.max.y));
-            pickup.transform.SetParent(gameObject.transform); // moving the part to be the sun of the palyer 
+            pickup.transform.localPosition = holdPosition;
         }
     }
 
@@ -100,7 +112,7 @@ public class Player : MonoBehaviour
             this.pickup == null;
     }
 
-
+    private bool CanFix() { return this.potentialPart != null && this.pickup == null; }
 
 
     private void SetPlayerKeys(int player_num)
@@ -110,22 +122,22 @@ public class Player : MonoBehaviour
             case 1:
                 player_left = KeyCode.LeftArrow;
                 player_right = KeyCode.RightArrow;
-                player_lift = KeyCode.M;
-                player_jump = KeyCode.Space;
-                player_rotate = KeyCode.N;
+                player_jump = KeyCode.UpArrow;
+                player_lift = KeyCode.RightBracket;
+                player_rotate = KeyCode.DownArrow;
+                player_fix = KeyCode.LeftBracket;
                 break;
             case 2:
                 player_left = KeyCode.A;
                 player_right = KeyCode.D;
-                player_lift = KeyCode.W;
-                player_jump = KeyCode.F;
-                player_rotate = KeyCode.T;
+                player_jump = KeyCode.W;
+                player_lift = KeyCode.V;
+                player_rotate = KeyCode.S;
+                player_fix = KeyCode.B;
                 break;
 
         }
-       
     }
-
 
     private void DropRobotPart()
     {
@@ -145,10 +157,6 @@ public class Player : MonoBehaviour
             
             this.potentialPart = collision.GetComponentInParent<RobotBasePart>();
         }
-      
-
-            
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -58,3 +58,15 @@ TagManager:
   - name: car
     uniqueID: 2008568779
     locked: 0
+  - name: robots_base
+    uniqueID: 1695292427
+    locked: 0
+  - name: robot_chunks
+    uniqueID: 735407361
+    locked: 0
+  - name: robot_parts
+    uniqueID: 1224280949
+    locked: 0
+  - name: characters
+    uniqueID: 3818050629
+    locked: 0
