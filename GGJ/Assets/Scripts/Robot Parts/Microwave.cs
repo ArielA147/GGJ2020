@@ -10,7 +10,7 @@ public class Microwave : RobotBasePart
     public Transform worldFloor;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         ANIMATOR_ATTACK_TRIGGER = Animator.StringToHash("zap");
