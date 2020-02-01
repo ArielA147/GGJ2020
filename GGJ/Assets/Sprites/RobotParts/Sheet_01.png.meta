@@ -44,6 +44,15 @@ TextureImporter:
   - first:
       213: -168676440290119075
     second: Sheet_01_11
+  - first:
+      213: -8725538152288896189
+    second: rench
+  - first:
+      213: -4057751535226781185
+    second: skrewer
+  - first:
+      213: -82746681965923874
+    second: hammer
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -325,7 +334,7 @@ TextureImporter:
         width: 35
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -346,7 +355,7 @@ TextureImporter:
         width: 37
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,7 +376,7 @@ TextureImporter:
         width: 59
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -375,6 +384,69 @@ TextureImporter:
       bones: []
       spriteID: d52b786dbadb8adf0800000000000000
       internalID: -168676440290119075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rench
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1520
+        width: 260
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34bb3b6c749a8e680800000000000000
+      internalID: -8725538152288896189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skrewer
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1287
+        width: 191
+        height: 753
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff103044a78ffa7c0800000000000000
+      internalID: -4057751535226781185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1451
+        width: 403
+        height: 583
+      alignment: 9
+      pivot: {x: 0.5921346, y: 0.49090168}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed13417c4560adef0800000000000000
+      internalID: -82746681965923874
       vertices: []
       indices: 
       edges: []

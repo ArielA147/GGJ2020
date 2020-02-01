@@ -1924,12 +1924,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7479022548985745032}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1084052146 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7479022547920739386, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-    type: 3}
-  m_PrefabInstance: {fileID: 7479022548985745032}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1084052147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2178,6 +2172,11 @@ PrefabInstance:
       propertyPath: robotNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4297598349270636002, guid: 27b4a9a9f70d14846a2bad18ab112f64,
+        type: 3}
+      propertyPath: m_SurfaceArc
+      value: 156.23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b4a9a9f70d14846a2bad18ab112f64, type: 3}
 --- !u!1001 &1159425957
@@ -2191,46 +2190,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739387, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 1.9213419
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739387, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 3.9095097
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739388, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: playerNum
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1084052146}
-    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: player_num
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: jumpSpeed
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
-        type: 3}
-      propertyPath: __velocity
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7479022547920739391, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
@@ -3773,6 +3732,16 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 7479022547920739388, guid: 2f958911eaf97de4793d3fd69ddc3e11,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479022547920739388, guid: 2f958911eaf97de4793d3fd69ddc3e11,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
       propertyPath: player_num
@@ -3781,12 +3750,17 @@ PrefabInstance:
     - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
       propertyPath: jumpSpeed
-      value: 21
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
       propertyPath: __velocity
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
+        type: 3}
+      propertyPath: playerNum
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7479022547920739391, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
