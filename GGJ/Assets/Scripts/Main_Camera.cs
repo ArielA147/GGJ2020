@@ -7,6 +7,7 @@ public class Main_Camera : MonoBehaviour
     public Camera cam;
     public Player [] players;
     float curr_size;
+    public float players_max_dist;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,21 +17,64 @@ public class Main_Camera : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {/*
-        foreach (Player player in players)
+    {
+
+        Vector2 p1 = Camera.main.WorldToViewportPoint(players[0].transform.position);
+        Vector2 p2 = Camera.main.WorldToViewportPoint(players[1].transform.position);
+        if (Mathf.Abs(p1.y - p2.y) > 0.65f)
         {
-            if ( cam.WorldToScreenPoint( player.transform.position ).y > Screen.height && 
-                Mathf.Abs((players[0].transform.position.y - players[1].transform.position.y) ) < Screen.height)
+
+            if ((p1.y > 0.8f || p2.y > 0.8f) && (p1.y < 0.01f || p2.y < 0.01f))
             {
-                Debug.Log("ttt");
-                curr_size = cam.orthographicSize;
-                cam.orthographicSize += 0.1f;
+                Camera.main.fieldOfView += 0.3f;
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.37f, transform.position.z);
+
             }
-            else if (player.transform.GetComponent<Rigidbody2D>().velocity.y < 0 && cam.WorldToScreenPoint(player.transform.position).y < Screen.height/2f )
+            else if (p1.y > 0.8f || p2.y > 0.8f)
             {
-                //cam.orthographicSize -= 0.1f;
+                Camera.main.fieldOfView += 0.3f;
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.37f, transform.position.z);
+
             }
-        } */
+            else if (p1.y < 0.01f || p2.y < 0.01f)
+            {
+                Camera.main.fieldOfView -= 0.3f;
+                transform.position = new Vector3(transform.position.x, transform.position.y - 0.37f, transform.position.z);
+
+            }
+        }
+        
+        else if (Mathf.Abs(p1.y - p2.y) < 0.65f && Mathf.Abs(p1.y - p2.y) > 0.62f)
+        {
+            Debug.Log("heree");
+
+            if (p1.y > 0.2f || p2.y > 0.2f)
+            {
+                Camera.main.fieldOfView -= 0.3f;
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.37f, transform.position.z);
+
+            }
+            else if (p1.y < 0.65f || p2.y < 0.65f)
+            {
+                Camera.main.fieldOfView -= 0.3f;
+                transform.position = new Vector3(transform.position.x, transform.position.y - 0.37f, transform.position.z);
+
+            }
+
+        }
+        else if (p1.y < 0.13f || p2.y < 0.13f)
+        {
+            //Camera.main.fieldOfView -= 0.3f;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.37f, transform.position.z);
+
+        }
+        else if (Mathf.Abs(p1.y - p2.y)<0.65f && p1.y < 0.2f &&  p2.y < 0.2f)
+        {
+            //Camera.main.fieldOfView -= 0.3f;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.37f, transform.position.z);
+        }
+
     }
-   
 }
+   
+
