@@ -637,51 +637,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1299928645639955605, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1224280949
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299928645639955605, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299928645639955605, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 209
-      objectReference: {fileID: 0}
-    - target: {fileID: 1766860988837614054, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1224280949
-      objectReference: {fileID: 0}
-    - target: {fileID: 1766860988837614054, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1766860988837614054, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 209
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617306658439551354, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1224280949
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617306658439551354, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617306658439551354, guid: ee821f3b92151db49b178a0a62bd1e21,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 209
-      objectReference: {fileID: 0}
     - target: {fileID: 8505164654554873728, guid: ee821f3b92151db49b178a0a62bd1e21,
         type: 3}
       propertyPath: m_Name
@@ -2296,7 +2251,7 @@ PrefabInstance:
     - target: {fileID: 227926886620832463, guid: c11e5bb2a31d989488924f60d36b7416,
         type: 3}
       propertyPath: m_Name
-      value: robot_part (5)
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c11e5bb2a31d989488924f60d36b7416, type: 3}
@@ -2408,6 +2363,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 154483299919870923, guid: 26ac0548eca595c48b59fe08d348e473,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 154483299919870923, guid: 26ac0548eca595c48b59fe08d348e473,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 154483299919870923, guid: 26ac0548eca595c48b59fe08d348e473,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4083231409497614714, guid: 26ac0548eca595c48b59fe08d348e473,
         type: 3}
       propertyPath: m_SortingLayerID

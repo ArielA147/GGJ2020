@@ -18,7 +18,8 @@ public class RobotBasePart : MonoBehaviour
     protected Animator anim;
     public int max_health = 10;
     private bool isFlipped = false;
-
+    protected int ANIM_HIT_TRIGGER;
+    protected int ANIM_RECHARGING_BOOL;
 
     public int Health
     {
@@ -42,6 +43,8 @@ public class RobotBasePart : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
+        ANIM_HIT_TRIGGER = Animator.StringToHash("hit");
+        ANIM_RECHARGING_BOOL = Animator.StringToHash("recharging");
         rb = transform.GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         isAttacking = robotChunk != null;
@@ -65,9 +68,15 @@ public class RobotBasePart : MonoBehaviour
         return curr_state == State.ATTACHED;
     }
 
-    public void Damage (int damage) { Health -= damage; }
+    public void Damage (int damage) {
+        anim.SetTrigger(ANIM_HIT_TRIGGER);
+        Health -= damage;
+    }
 
-    public void Recharge() { Health += recharge_unit; }
+    public void Recharge() {
+        anim.SetBool(ANIM_RECHARGING_BOOL, true);
+        Health += recharge_unit;
+    }
 
     public void Drop() {
         if (IsInRobotArea())
