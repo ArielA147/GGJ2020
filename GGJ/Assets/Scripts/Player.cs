@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
     {
         switch (player_num)
         { 
-            case 2:
+            case 1:
                 player_left = KeyCode.LeftArrow;
                 player_right = KeyCode.RightArrow;
                 player_jump = KeyCode.UpArrow;
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
                 player_rotate = KeyCode.DownArrow;
                 player_fix = KeyCode.L;
                 break;
-            case 1:
+            case 2:
                 player_left = KeyCode.A;
                 player_right = KeyCode.D;
                 player_jump = KeyCode.W;
