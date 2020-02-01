@@ -65,9 +65,9 @@ public class RobotBasePart : MonoBehaviour
         return curr_state == State.ATTACHED;
     }
 
-    public void Damage (int damage) { health -= damage; }
+    public void Damage (int damage) { Health -= damage; }
 
-    public void Recharge() { health += recharge_unit; }
+    public void Recharge() { Health += recharge_unit; }
 
     public void Drop() {
         if (IsInRobotArea())

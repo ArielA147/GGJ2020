@@ -58,8 +58,6 @@ public class WashingMachine : RobotBasePart
         if (hit_index != -1)
         {
             RaycastHit2D hit = hits[hit_index];
-            Debug.Log(hit.distance);
-            Debug.Log(hit.point);
             kettle.gameObject.transform.position = hit.point;
             if (hit.collider.GetComponent<RobotBasePart>() || hit.collider.GetComponentInParent<RobotBasePart>())
             {
