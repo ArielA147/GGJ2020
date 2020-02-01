@@ -20,23 +20,50 @@ public class Player : MonoBehaviour
     public float rechargeInterval = 1f;
     [Range(1,2)]
     public int player_num = 0;
+    string[] collidableLayers = { "Ground", "Pltaform" };
+    Transform graphicsRootTransform;
+
+    int ANIM_GROUNDED_BOOL, ANIM_JUMP_TRIGGER, ANIM_RUN_BOOL, ANIM_FIXING_BOOL;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        ANIM_GROUNDED_BOOL = Animator.StringToHash("Grounded");
+        ANIM_JUMP_TRIGGER = Animator.StringToHash("Jump");
+        ANIM_RUN_BOOL = Animator.StringToHash("Run");
+        ANIM_FIXING_BOOL = Animator.StringToHash("fixing");
+
         isRight = playerNum == 1;
         sr = GetComponent<SpriteRenderer>();
         RB = transform.GetComponent<Rigidbody2D>();
         SetPlayerKeys(playerNum);
-        anim = GetComponent<Animator>();
-        SetPlayerKeys(playerNum);
+        anim = GetComponentInChildren<Animator>();
+        graphicsRootTransform = anim.gameObject.transform;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool(ANIM_GROUNDED_BOOL, IsGrounded());
         HandlePlayerMovement();
         HandlePlayerActions();
+    }
+
+    private bool IsGrounded() {
+        
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -transform.up, 1f);
+        foreach (RaycastHit2D hit in hits){
+            if (
+                hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground") ||
+                hit.collider.gameObject.layer == LayerMask.NameToLayer("Platform")) {
+                return true;
+            }
+        }
+        return false;
+
+
     }
 
     private void HandlePlayerActions() {
@@ -48,13 +75,21 @@ public class Player : MonoBehaviour
         {
             pickup.transform.Rotate(new Vector3(0, 0, 2));
         }
-        if (Input.GetKey(player_fix) && CanFix())
+        if (Input.GetKey(player_fix))
         {
-            //TODO: this will recharge too fast :(
-            this.potentialPart.Recharge();
+            anim.SetBool(ANIM_FIXING_BOOL, true);
+            if (CanFix())
+            {
+                this.potentialPart.Recharge();
+            }
         }
-        else if (potentialPart != null) {
+        else if (potentialPart != null)
+        {
+            anim.SetBool(ANIM_FIXING_BOOL, false);
             potentialPart.SetNotCharging();
+        }
+        else {
+            anim.SetBool(ANIM_FIXING_BOOL, false);
         }
     }
 
@@ -64,23 +99,26 @@ public class Player : MonoBehaviour
         {
             RB.velocity = new Vector2(-1f * __velocity, RB.velocity.y);
             isRight = false;
-            //anim.SetBool("is_running", true);
+            anim.SetBool(ANIM_RUN_BOOL, true);
         }
         else if (Input.GetKey(player_right))
         {
             isRight = true;
             RB.velocity = new Vector2(1f*__velocity, RB.velocity.y);
-            //anim.SetBool("is_running", true);
+            anim.SetBool(ANIM_RUN_BOOL, true);
         }
         else
         {
             RB.velocity = new Vector2(0, RB.velocity.y);
-            //anim.SetBool("is_running", false);
+            anim.SetBool(ANIM_RUN_BOOL, false);
         }
-        sr.flipX = isRight;
+        Vector3 currGraphicsScale = graphicsRootTransform.transform.localScale;
+        currGraphicsScale.x = isRight ? -Mathf.Abs(currGraphicsScale.x) : Mathf.Abs(currGraphicsScale.x);
+        graphicsRootTransform.localScale = currGraphicsScale;
 
         if (Input.GetKeyDown(player_jump) && !is_jumping)
         {
+            anim.SetTrigger(ANIM_JUMP_TRIGGER);
             is_jumping = true;
             RB.velocity = new Vector2( RB.velocity.x, jumpSpeed);
         }

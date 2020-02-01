@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62454cad274498748a15be8c9746cbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curr_state: 0
   rb: {fileID: 0}
   health: 10
   recharge_unit: 1
@@ -238,7 +239,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 154.8
   m_UseSideFriction: 1
   m_UseSideBounce: 0
   m_SideArc: 1
