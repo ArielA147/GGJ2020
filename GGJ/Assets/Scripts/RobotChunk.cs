@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RobotChunk : MonoBehaviour
 {
-
     Robot parentRobot;
     Vector3 _startPosition;
     float shakeAmount = 0.075f;
