@@ -5,7 +5,7 @@ using UnityEngine;
 public class RobotBasePart : MonoBehaviour
 {
     public enum State { DETTACHED, ATTACHED };
-    private State curr_state;
+    public State curr_state;
     public Rigidbody2D rb;
     [SerializeField]
     private int health = 10;
