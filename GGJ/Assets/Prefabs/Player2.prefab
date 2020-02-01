@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   __velocity: 8
   jumpSpeed: 35
-  playerNum: 2
+  playerNum: 1
   anim: {fileID: 0}
   player_left: 0
   player_right: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   holdPosition: {x: -0.5, y: 2.3}
   maxRotationAngle: 30
   rechargeInterval: 1
-  player_num: 2
+  player_num: 1
 --- !u!50 &7479022547920739388
 Rigidbody2D:
   serializedVersion: 4
@@ -248,6 +248,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5202008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298573383153827520, guid: 420178a65d385e2498b90a12545cef90,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -476916667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298573383153827520, guid: 420178a65d385e2498b90a12545cef90,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298573383259974223, guid: 420178a65d385e2498b90a12545cef90,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -476916667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298573383259974223, guid: 420178a65d385e2498b90a12545cef90,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4819248230690409070, guid: 420178a65d385e2498b90a12545cef90,
         type: 3}
