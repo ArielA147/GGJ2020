@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
             //TODO: this will recharge too fast :(
             this.potentialPart.Recharge();
         }
+        else if (potentialPart != null) {
+            potentialPart.SetNotCharging();
+        }
     }
 
     private void HandlePlayerMovement()

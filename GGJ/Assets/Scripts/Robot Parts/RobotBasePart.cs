@@ -78,6 +78,10 @@ public class RobotBasePart : MonoBehaviour
         Health += recharge_unit;
     }
 
+    public void SetNotCharging() {
+        anim.SetBool(ANIM_RECHARGING_BOOL, false);
+    }
+
     public void Drop() {
         if (IsInRobotArea())
         {
