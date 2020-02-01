@@ -64,7 +64,7 @@ public class WashingMachine : RobotBasePart
                 RobotBasePart target = hit.collider.GetComponent<RobotBasePart>() != null ?
                     hit.collider.GetComponent<RobotBasePart>() :
                     hit.collider.GetComponentInParent<RobotBasePart>();
-                target.Damage(this.damage);
+                target.Damage(this.damage, 0.5f);
             }
         }
         else
