@@ -17,6 +17,7 @@ public class RobotBasePart : MonoBehaviour
     public int damage = 1;
     protected Animator anim;
     public int max_health = 10;
+    private bool isFlipped = false;
 
 
     public int Health
@@ -85,10 +86,19 @@ public class RobotBasePart : MonoBehaviour
     private void AttachToRobot() {
         AttachTo(potentialRobotChunk.transform);
         this.robotChunk = this.potentialRobotChunk;
+        if (this.robotChunk.GetRobotNum() == 1 && !isFlipped) {
+            Flip();
+        }
         this.potentialRobotChunk = null;
         this.curr_state = State.ATTACHED;
     }
 
+    void Flip() {
+        Vector3 newScale = transform.localScale;
+        newScale.x *= -1;
+        transform.localScale = newScale;
+        isFlipped = !isFlipped;
+    }
 
     bool IsInRobotArea() {
         return this.potentialRobotChunk != null &&  this.robotChunk == null;

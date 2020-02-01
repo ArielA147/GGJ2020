@@ -12,9 +12,8 @@ public class Player : MonoBehaviour
     private RobotBasePart potentialPart;
     public int playerNum;
     public Animator anim;
-    public GameObject floor;
     private bool is_jumping = false;
-    private KeyCode player_left, player_right, player_lift, player_jump, player_rotate, player_fix;
+    public KeyCode player_left, player_right, player_lift, player_jump, player_rotate, player_fix;
     private bool isRight;
     public Vector2 holdPosition = new Vector2(-0.5f, 2.3f);
     SpriteRenderer sr;
@@ -118,7 +117,7 @@ public class Player : MonoBehaviour
     private void SetPlayerKeys(int player_num)
     {
         switch (player_num)
-        {
+        { 
             case 1:
                 player_left = KeyCode.LeftArrow;
                 player_right = KeyCode.RightArrow;

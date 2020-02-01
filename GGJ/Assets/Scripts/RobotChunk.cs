@@ -29,4 +29,8 @@ public class RobotChunk : MonoBehaviour
             transform.localPosition = _startPosition + new Vector3(0.0f, Mathf.Sin((offset + Time.time) * shakeSpeed) * shakeAmount, 0.0f);
         }
     }
+
+    public int GetRobotNum() {
+        return parentRobot.robotNumber;
+    }
 }

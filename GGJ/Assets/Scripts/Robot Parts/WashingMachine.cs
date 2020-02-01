@@ -5,10 +5,11 @@ using UnityEngine;
 public class WashingMachine : RobotBasePart
 {
 
-    public float attackDistance = 15f;
+    public float attackDistance = 17f;
     public float startRaycastDistance = 4f;
     private int ANIMATOR_ATTACK_TRIGGER;
     public WashingMachineKettle kettle;
+    private int attackDirection = -1;
 
     new void Start() {
         base.Start();
@@ -18,8 +19,8 @@ public class WashingMachine : RobotBasePart
     new void Update() {
         base.Update();
         Debug.DrawLine(
-            transform.position - transform.right * startRaycastDistance,
-            transform.position - transform.right * attackDistance, Color.cyan);
+            transform.position + attackDirection * transform.right * startRaycastDistance,
+            transform.position + attackDirection * transform.right * attackDistance, Color.cyan);
     }
 
     protected override bool HasAttack()
@@ -34,20 +35,27 @@ public class WashingMachine : RobotBasePart
 
     protected override void Attack()
     {
+        attackDirection = this.robotChunk.GetRobotNum() == 1 ? 1 : -1;
         RaycastHit2D hit = Physics2D.Raycast(
-            transform.position - transform.right * startRaycastDistance, -transform.right * this.transform.localScale.x);
+            transform.position + attackDirection * transform.right * startRaycastDistance, 
+            attackDirection * transform.right);
         if (hit.collider != null && hit.distance <= attackDistance)
         {
             Debug.Log(hit.distance);
+            Debug.Log(hit.point);
             kettle.gameObject.transform.position = hit.point;
-            if (hit.collider.GetComponent<RobotBasePart>() || hit.collider.GetComponentInParent<RobotBasePart>()) {
+            if (hit.collider.GetComponent<RobotBasePart>() || hit.collider.GetComponentInParent<RobotBasePart>())
+            {
                 RobotBasePart target = hit.collider.GetComponent<RobotBasePart>() != null ?
-                    hit.collider.GetComponent<RobotBasePart>() : 
+                    hit.collider.GetComponent<RobotBasePart>() :
                     hit.collider.GetComponentInParent<RobotBasePart>();
                 target.Damage(this.damage);
             }
         }
-        kettle.gameObject.transform.localPosition = new Vector3(-attackDistance, 0f, 0f);
+        else
+        {
+            kettle.gameObject.transform.localPosition = new Vector3(-attackDistance, 0f, 0f);
+        }
         anim.SetTrigger(ANIMATOR_ATTACK_TRIGGER);
     }
 }
