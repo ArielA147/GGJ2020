@@ -150,6 +150,12 @@ public class RobotBasePart : MonoBehaviour
         return -1f; //not relevant for base
     }
 
+    public virtual bool CanRotate()
+    {
+        return true;
+    }
+
+
     protected virtual void Attack() {
         //do nothing
     }

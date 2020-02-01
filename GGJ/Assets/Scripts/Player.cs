@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         {
             ActionButton();
         }
-        if (pickup != null && Input.GetKey(player_rotate))
+        if (pickup != null && pickup.CanRotate() && Input.GetKey(player_rotate))
         {
             this.rotation = 90;
             //this.rotation = myRobot.robotNumber * 90;

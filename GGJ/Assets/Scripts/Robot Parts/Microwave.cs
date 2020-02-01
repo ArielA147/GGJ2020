@@ -21,6 +21,11 @@ public class Microwave : RobotBasePart
         return true;
     }
 
+    public override bool CanRotate()
+    {
+        return false;
+    }
+
 
     protected override float GetAttackIntervalInSeconds()
     {
