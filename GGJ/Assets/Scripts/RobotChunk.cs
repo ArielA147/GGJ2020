@@ -31,6 +31,6 @@ public class RobotChunk : MonoBehaviour
     }
 
     public int GetRobotNum() {
-        return parentRobot.robotNumber;
+    return parentRobot.robotNumber;
     }
 }
