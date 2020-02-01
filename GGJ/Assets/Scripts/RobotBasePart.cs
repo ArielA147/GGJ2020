@@ -26,7 +26,8 @@ public class RobotBasePart : MonoBehaviour
             // Can't have less health than drop health
             health = Mathf.Max(value, drop_health);
             health = Mathf.Min(value, max_health);
-            if (health == drop_health) {
+            if (health <= drop_health) {
+                health = drop_health;
                 Drop();
             } else if (health == max_health) {
                 DoneRepairing();

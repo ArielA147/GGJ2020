@@ -49,7 +49,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.222611, y: -4.447028}
+  m_Offset: {x: 1.222611, y: -1.2384071}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -60,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.1170435, y: 4.390353}
+  m_Size: {x: 6.1170435, y: 4.7678347}
   m_EdgeRadius: 0
 --- !u!114 &227926886620832458
 MonoBehaviour:
@@ -81,6 +81,7 @@ MonoBehaviour:
   robotChunk: {fileID: 0}
   potentialRobotChunk: {fileID: 0}
   damage: 1
+  max_health: 10
 --- !u!50 &227926886620832462
 Rigidbody2D:
   serializedVersion: 4
@@ -128,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227926886857253799}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.7555366, y: 6.910217, z: -13.993074}
+  m_LocalPosition: {x: 6.7555366, y: 9.91, z: -13.993074}
   m_LocalScale: {x: 2.7894, y: 2.7894, z: 2.7894}
   m_Children: []
   m_Father: {fileID: 227926886620832460}
@@ -198,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227926886938721294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.11, y: 1.37, z: -13.993074}
+  m_LocalPosition: {x: 8.11, y: 4.3697824, z: -13.993074}
   m_LocalScale: {x: 2.7894, y: 2.7894, z: 2.7894}
   m_Children: []
   m_Father: {fileID: 227926886620832460}
@@ -266,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4291828197684718494}
   m_LocalRotation: {x: -0, y: -0, z: -0.042241935, w: 0.9991075}
-  m_LocalPosition: {x: -1.6, y: 1.05, z: 0}
+  m_LocalPosition: {x: -1.6, y: 4.0497828, z: 0}
   m_LocalScale: {x: 1.171, y: 1.171, z: 1.171}
   m_Children: []
   m_Father: {fileID: 227926886620832460}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 733130807779630058}
   - component: {fileID: 733130807779630061}
   - component: {fileID: 733130807779630060}
+  - component: {fileID: 386682170}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -98,6 +99,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0d4d90ecd2aa94bb86bb54a5ee65c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotNumber: 1
+--- !u!95 &386682170
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733130807779630063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca9bda7c7ae726a40b621b805ab921a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &733130807347685231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 6227409157587149180, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6227409157587149181, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
         type: 3}
@@ -301,6 +322,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6227409157587149180, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6227409157587149181, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
         type: 3}
       propertyPath: m_Offset.y
@@ -427,6 +453,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6227409157587149180, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6227409157587149181, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -547,6 +578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227409157587149180, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6227409157587149181, guid: ea85a7bfde41f9e4c9b0c9a1cbd7eb6b,
         type: 3}
