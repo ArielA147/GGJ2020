@@ -92,7 +92,7 @@ public class RobotBasePart : MonoBehaviour
     }
 
     private void DoneRepairing() {
-        Debug.Log("Done Repairing!");
+        //Debug.Log("Done Repairing!");
     }
 
     private void AttachToRobot() {

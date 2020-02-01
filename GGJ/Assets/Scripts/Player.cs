@@ -50,7 +50,8 @@ public class Player : MonoBehaviour
         }
         if (pickup != null && Input.GetKey(player_rotate))
         {
-            this.rotation = myRobot.robotNumber * 90;
+            this.rotation = 90;
+            //this.rotation = myRobot.robotNumber * 90;
             int rot_direction = pickup.transform.rotation.eulerAngles.z > maxRotationAngle ? 1 : -1;
             pickup.transform.Rotate(new Vector3(0, 0, 2));
         }
@@ -128,7 +129,7 @@ public class Player : MonoBehaviour
     {
         switch (player_num)
         { 
-            case 1:
+            case 2:
                 player_left = KeyCode.LeftArrow;
                 player_right = KeyCode.RightArrow;
                 player_jump = KeyCode.UpArrow;
@@ -136,7 +137,7 @@ public class Player : MonoBehaviour
                 player_rotate = KeyCode.DownArrow;
                 player_fix = KeyCode.L;
                 break;
-            case 2:
+            case 1:
                 player_left = KeyCode.A;
                 player_right = KeyCode.D;
                 player_jump = KeyCode.W;
