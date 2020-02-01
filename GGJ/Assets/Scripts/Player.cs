@@ -17,7 +17,12 @@ public class Player : MonoBehaviour
     private bool isRight;
     public Vector2 holdPosition = new Vector2(-0.5f, 2.3f);
     SpriteRenderer sr;
-    public float rechargeInterval = 1f;
+    public float maxRotationAngle = 30f;
+
+    //-----------------------------------------
+    private int rotation;
+    //-----------------------------------------------
+        public float rechargeInterval = 1f;
     private float timeSinceLastRechargeAction = 0f;
     [Range(1,2)]
     public int player_num = 0;
@@ -48,6 +53,8 @@ public class Player : MonoBehaviour
         }
         if (pickup != null && Input.GetKey(player_rotate))
         {
+            this.rotation = myRobot.robotNumber * 90;
+            int rot_direction = pickup.transform.rotation.eulerAngles.z > maxRotationAngle ? 1 : -1;
             pickup.transform.Rotate(new Vector3(0, 0, 2));
         }
         if (Input.GetKey(player_fix) && CanFix())
@@ -102,6 +109,10 @@ public class Player : MonoBehaviour
             // moving the part to the player pos. 
             // the y pos of the part will be bigger than the palyer pos ("over the shoulder").
             pickup.transform.localPosition = holdPosition;
+            if ((player_num == 1 && pickup.transform.localScale.x > 0) ||
+                (player_num == 2 && pickup.transform.localScale.x < 0)) {
+                pickup.Flip();
+            }
         }
     }
 
@@ -116,7 +127,7 @@ public class Player : MonoBehaviour
     private bool CanFix() { return this.potentialPart != null && this.pickup == null; }
 
 
-    private void SetPlayerKeys(int player_num)
+    private void SetPlayerKeys(int player_num) 
     {
         switch (player_num)
         { 

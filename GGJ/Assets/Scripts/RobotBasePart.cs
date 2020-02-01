@@ -98,14 +98,11 @@ public class RobotBasePart : MonoBehaviour
     private void AttachToRobot() {
         AttachTo(potentialRobotChunk.transform);
         this.robotChunk = this.potentialRobotChunk;
-        if (this.robotChunk.GetRobotNum() == 1 && !isFlipped) {
-            Flip();
-        }
         this.potentialRobotChunk = null;
         this.curr_state = State.ATTACHED;
     }
 
-    void Flip() {
+    public void Flip() {
         Vector3 newScale = transform.localScale;
         newScale.x *= -1;
         transform.localScale = newScale;
