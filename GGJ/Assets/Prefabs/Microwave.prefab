@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9f5c8e2ba3e7049b4c4d7037702fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curr_state: 0
   rb: {fileID: 0}
   health: 10
   recharge_unit: 1
