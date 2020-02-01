@@ -39,7 +39,7 @@ public class Microwave : RobotBasePart
         RobotBasePart[] allParts = FindObjectsOfType<RobotBasePart>();
         foreach (RobotBasePart part in allParts) {
             if (part.robotChunk != null && part.robotChunk.GetRobotNum() != this.robotChunk.GetRobotNum()) {
-                part.Damage(damage, 7f);
+                part.Damage(damage, 9f);
             }
         }
     }
