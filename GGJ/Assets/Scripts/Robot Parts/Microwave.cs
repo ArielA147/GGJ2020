@@ -10,7 +10,7 @@ public class Microwave : RobotBasePart
     public Transform worldFloor;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         ANIMATOR_ATTACK_TRIGGER = Animator.StringToHash("zap");
@@ -39,7 +39,7 @@ public class Microwave : RobotBasePart
         RobotBasePart[] allParts = FindObjectsOfType<RobotBasePart>();
         foreach (RobotBasePart part in allParts) {
             if (part.robotChunk != null && part.robotChunk.GetRobotNum() != this.robotChunk.GetRobotNum()) {
-                part.Damage(damage);
+                part.Damage(damage, 7f);
             }
         }
     }

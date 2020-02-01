@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public float __velocity;
     public float jumpSpeed = 1f;
     private Rigidbody2D RB; // RB for the player
-    public Robot myRobot; // the robot of the palyer
     private RobotBasePart pickup; // the robot part that is curently hold by the player
     private RobotBasePart potentialPart;
     public int playerNum;
@@ -18,9 +17,7 @@ public class Player : MonoBehaviour
     public Vector2 holdPosition = new Vector2(-0.5f, 2.3f);
     SpriteRenderer sr;
     public float maxRotationAngle = 30f;
-    private int rotation;
-        public float rechargeInterval = 1f;
-    private float timeSinceLastRechargeAction = 0f;
+    public float rechargeInterval = 1f;
     [Range(1,2)]
     public int player_num = 0;
 
@@ -30,7 +27,6 @@ public class Player : MonoBehaviour
         isRight = playerNum == 1;
         sr = GetComponent<SpriteRenderer>();
         RB = transform.GetComponent<Rigidbody2D>();
-        myRobot = GameObject.FindObjectOfType<Robot>();
         SetPlayerKeys(playerNum);
         anim = GetComponent<Animator>();
         SetPlayerKeys(playerNum);
@@ -50,15 +46,15 @@ public class Player : MonoBehaviour
         }
         if (pickup != null && pickup.CanRotate() && Input.GetKey(player_rotate))
         {
-            this.rotation = 90;
-            //this.rotation = myRobot.robotNumber * 90;
-            int rot_direction = pickup.transform.rotation.eulerAngles.z > maxRotationAngle ? 1 : -1;
             pickup.transform.Rotate(new Vector3(0, 0, 2));
         }
         if (Input.GetKey(player_fix) && CanFix())
         {
             //TODO: this will recharge too fast :(
             this.potentialPart.Recharge();
+        }
+        else if (potentialPart != null) {
+            potentialPart.SetNotCharging();
         }
     }
 
