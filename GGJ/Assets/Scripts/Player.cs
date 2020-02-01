@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     }
 
     private void HandlePlayerActions() {
-        if (Input.GetKeyDown("m"))
+        if (Input.GetKeyDown(player_lift))
         {
             ActionButton();
         }
@@ -124,9 +124,9 @@ public class Player : MonoBehaviour
                 player_left = KeyCode.LeftArrow;
                 player_right = KeyCode.RightArrow;
                 player_jump = KeyCode.UpArrow;
-                player_lift = KeyCode.RightBracket;
+                player_lift = KeyCode.K;
                 player_rotate = KeyCode.DownArrow;
-                player_fix = KeyCode.LeftBracket;
+                player_fix = KeyCode.L;
                 break;
             case 2:
                 player_left = KeyCode.A;

@@ -102,8 +102,15 @@ MonoBehaviour:
   myRobot: {fileID: 0}
   playerNum: 2
   anim: {fileID: 7479022547920739386}
-  floor: {fileID: 0}
+  player_left: 0
+  player_right: 0
+  player_lift: 0
+  player_jump: 0
+  player_rotate: 0
+  player_fix: 0
   holdPosition: {x: -0.5, y: 2.3}
+  rechargeInterval: 1
+  player_num: 0
 --- !u!50 &7479022547920739388
 Rigidbody2D:
   serializedVersion: 4
