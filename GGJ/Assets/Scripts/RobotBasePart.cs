@@ -79,6 +79,18 @@ public class RobotBasePart : MonoBehaviour
         }
     }
 
+    // We need this version of Drop to prevent players from dropping parts onto enemy's robot
+    public void Drop(int player_num) {
+        if (IsInRobotArea() && player_num == potentialRobotChunk.GetRobotNum())
+        {
+            AttachToRobot();
+        }
+        else
+        {
+            FallDown();
+        }
+    }
+
     private void DoneRepairing() {
         Debug.Log("Done Repairing!");
     }
@@ -108,6 +120,7 @@ public class RobotBasePart : MonoBehaviour
         CancelInvoke("Attack");
         isAttacking = false;
         this.transform.parent = null;
+        this.robotChunk = null;
         rb.bodyType = RigidbodyType2D.Dynamic;
         curr_state = State.DETTACHED;
     }

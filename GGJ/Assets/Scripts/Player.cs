@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     SpriteRenderer sr;
     public float rechargeInterval = 1f;
     private float timeSinceLastRechargeAction = 0f;
+    [Range(1,2)]
+    public int player_num = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -146,7 +148,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        pickup.Drop();
+        pickup.Drop(player_num);
         pickup = null;
     }
 

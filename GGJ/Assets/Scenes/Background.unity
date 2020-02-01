@@ -931,6 +931,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1084052146}
+    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
+        type: 3}
+      propertyPath: player_num
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7479022547920739391, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1934,6 +1939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479022547920739389, guid: 2f958911eaf97de4793d3fd69ddc3e11,
+        type: 3}
+      propertyPath: player_num
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7479022547920739391, guid: 2f958911eaf97de4793d3fd69ddc3e11,
         type: 3}
