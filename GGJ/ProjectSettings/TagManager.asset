@@ -43,3 +43,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: sky
+    uniqueID: 1538366983
+    locked: 0
+  - name: sand
+    uniqueID: 1130718465
+    locked: 0
+  - name: car shadow
+    uniqueID: 2317838173
+    locked: 0
+  - name: mountain
+    uniqueID: 319221241
+    locked: 0
+  - name: car
+    uniqueID: 2008568779
+    locked: 0
+  - name: robots_base
+    uniqueID: 1695292427
+    locked: 0
+  - name: robot_chunks
+    uniqueID: 735407361
+    locked: 0
+  - name: robot_parts
+    uniqueID: 1224280949
+    locked: 0
+  - name: characters
+    uniqueID: 3818050629
+    locked: 0

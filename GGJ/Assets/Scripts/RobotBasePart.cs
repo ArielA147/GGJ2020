@@ -14,7 +14,10 @@ public class RobotBasePart : MonoBehaviour
     public RobotChunk robotChunk;
     public RobotChunk potentialRobotChunk;
     private bool isAttacking = false;
+    public int damage = 1;
     protected Animator anim;
+    public int max_health = 10;
+    private bool isFlipped = false;
 
 
     public int Health
@@ -23,8 +26,12 @@ public class RobotBasePart : MonoBehaviour
         set {
             // Can't have less health than drop health
             health = Mathf.Max(value, drop_health);
-            if (health == drop_health) {
+            health = Mathf.Min(value, max_health);
+            if (health <= drop_health) {
+                health = drop_health;
                 Drop();
+            } else if (health == max_health) {
+                DoneRepairing();
             }
         }
     }
@@ -35,14 +42,13 @@ public class RobotBasePart : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        Debug.Log("Starting Robot Part");
         rb = transform.GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         isAttacking = robotChunk != null;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (CanAttack() && !isAttacking) {
             StartAttacking();
@@ -59,14 +65,13 @@ public class RobotBasePart : MonoBehaviour
         return curr_state == State.ATTACHED;
     }
 
-    public void Damage (int damage) { health -= damage; }
+    public void Damage (int damage) { Health -= damage; }
 
-    public void Recharge() { health += recharge_unit; }
+    public void Recharge() { Health += recharge_unit; }
 
     public void Drop() {
         if (IsInRobotArea())
         {
-            Debug.Log("in robot area");
             AttachToRobot();
         }
         else {
@@ -74,18 +79,40 @@ public class RobotBasePart : MonoBehaviour
         }
     }
 
+    // We need this version of Drop to prevent players from dropping parts onto enemy's robot
+    public void Drop(int player_num) {
+        if (IsInRobotArea() && player_num == potentialRobotChunk.GetRobotNum())
+        {
+            AttachToRobot();
+        }
+        else
+        {
+            FallDown();
+        }
+    }
+
+    private void DoneRepairing() {
+        Debug.Log("Done Repairing!");
+    }
+
     private void AttachToRobot() {
         AttachTo(potentialRobotChunk.transform);
         this.robotChunk = this.potentialRobotChunk;
+        if (this.robotChunk.GetRobotNum() == 1 && !isFlipped) {
+            Flip();
+        }
         this.potentialRobotChunk = null;
         this.curr_state = State.ATTACHED;
     }
 
+    void Flip() {
+        Vector3 newScale = transform.localScale;
+        newScale.x *= -1;
+        transform.localScale = newScale;
+        isFlipped = !isFlipped;
+    }
 
     bool IsInRobotArea() {
-
-        Debug.Log("potentialRobotChunk - ", this.potentialRobotChunk);
-        Debug.Log("robotChunk - ", this.robotChunk);
         return this.potentialRobotChunk != null &&  this.robotChunk == null;
     }
 
@@ -93,13 +120,13 @@ public class RobotBasePart : MonoBehaviour
         CancelInvoke("Attack");
         isAttacking = false;
         this.transform.parent = null;
+        this.robotChunk = null;
         rb.bodyType = RigidbodyType2D.Dynamic;
         curr_state = State.DETTACHED;
     }
 
     public void AttachTo(Transform newParent)
     {
-        Debug.Log("Attaching Robot part");
         rb.bodyType = RigidbodyType2D.Kinematic;
         this.transform.parent = newParent;
         curr_state = State.ATTACHED;
