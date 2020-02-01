@@ -18,9 +18,9 @@ public class WashingMachine : RobotBasePart
 
     new void Update() {
         base.Update();
-        Debug.DrawLine(
-            transform.position + attackDirection * transform.right * startRaycastDistance,
-            transform.position + attackDirection * transform.right * attackDistance, Color.cyan);
+        //Debug.DrawLine(
+        //    transform.position + attackDirection * transform.right * startRaycastDistance,
+        //    transform.position + attackDirection * transform.right * attackDistance, Color.cyan);
     }
 
     protected override bool HasAttack()
